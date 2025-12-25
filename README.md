@@ -46,7 +46,7 @@ The system consists of the following main components:
 ---
 
 ## Project Structure
-
+```
 From-Recognition-To-Regulation-A-Multimodal-Emotion-Aware-Music-System/
 ├── design/
 ├── notebook/
@@ -57,7 +57,7 @@ From-Recognition-To-Regulation-A-Multimodal-Emotion-Aware-Music-System/
 ├── requirement.txt
 ├── .gitignore
 └── README.md
-
+```
 ---
 
 ## Datasets Used
