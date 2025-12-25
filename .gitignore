@@ -1,0 +1,29 @@
+# Python cache
+__pycache__/
+*.pyc
+.cache/
+
+# Virtual environment
+renv/
+env/
+venv/
+
+# Trained models
+models/
+*.pth
+*.pt
+*.h5
+
+# Database
+instance/
+*.db
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Environment variables
+.env
+
+# OS files
+.DS_Store
+Thumbs.db

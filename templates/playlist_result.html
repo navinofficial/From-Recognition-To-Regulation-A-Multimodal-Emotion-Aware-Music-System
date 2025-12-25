@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MoodTune — Playlist</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='playlist_result.css') }}">
+</head>
+<body>
+
+<div class="container">
+  <h1 class="title">Your <span>Recommended Playlist</span></h1>
+  <p class="subtitle">Click the button to open a continuous YouTube playlist that plays all recommended songs.</p>
+
+  <div class="song-list">
+    {% for s in songs %}
+      <div class="song-card">
+        <div class="index">{{ loop.index }}</div>
+        <div class="song-title">{{ s }}</div>
+      </div>
+    {% endfor %}
+  </div>
+
+  {% if playlist_url %}
+    <a class="playlist-btn" href="{{ playlist_url }}" target="_blank" rel="noopener noreferrer">
+      ▶ Open Full Playlist
+    </a>
+  {% else %}
+    <p style="margin-top:18px; color:#ffe6f7;">Could not create an autoplay playlist for these songs.</p>
+  {% endif %}
+
+</div>
+
+</body>
+</html>

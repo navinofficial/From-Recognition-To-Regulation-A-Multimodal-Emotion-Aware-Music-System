@@ -1,0 +1,82 @@
+/* theme-matched css */
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 50px;
+  background: linear-gradient(135deg, #2b0a63, #6a0dad, #d63384);
+  font-family: 'Segoe UI', sans-serif;
+  color: #fff;
+}
+
+.container {
+  max-width: 900px;
+  width: 95%;
+  text-align: center;
+  padding: 20px;
+}
+
+.title {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.title span { color: #ffb6ff; }
+
+.subtitle {
+  color: #f3dff8;
+  margin-bottom: 24px;
+}
+
+/* song list */
+.song-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 22px;
+}
+
+.song-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: rgba(255,255,255,0.12);
+  padding: 14px 18px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.14);
+}
+.song-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+}
+.index {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.28);
+  color: #6a0dad;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:700;
+}
+.song-title { font-weight:600; text-align:left; }
+
+/* playlist button */
+.playlist-btn {
+  display:inline-block;
+  margin-top: 18px;
+  padding: 14px 40px;
+  background: linear-gradient(90deg, #a020f0, #ff66c4);
+  color: white;
+  border-radius: 30px;
+  font-size: 16px;
+  text-decoration: none;
+  font-weight: 700;
+  box-shadow: 0 6px 20px rgba(255,102,196,0.28);
+}
+.playlist-btn:hover {
+  transform: scale(1.03);
+}

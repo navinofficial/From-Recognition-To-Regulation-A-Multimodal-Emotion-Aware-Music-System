@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MoodTune - Login/Signup</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+</head>
+<body>
+  <div class="container">
+    
+    <!-- LEFT SIDE -->
+    <div class="left">
+      <div class="logo">
+        <img src="https://cdn-icons-png.flaticon.com/512/727/727245.png" alt="logo" />
+        <h2>MoodTune</h2>
+        <p>AI Music Therapy</p>
+      </div>
+
+      <h1>Feel Better with Music 🎵</h1>
+      <p class="subtitle">
+        This app listens, understands, and helps regulate your mood using AI + music.
+      </p>
+
+      <ul>
+        <li>🧠 AI Emotion Detection</li>
+        <li>🎶 Personalized Music Therapy</li>
+        <li>📊 Mood Tracking & Insights</li>
+      </ul>
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="right">
+      <div class="login-box">
+
+        <!-- FLASH MESSAGES -->
+        <div class="flash-container">
+          {% with messages = get_flashed_messages() %}
+            {% if messages %}
+              {% for msg in messages %}
+                <div class="flash">{{ msg }}</div>
+              {% endfor %}
+            {% endif %}
+          {% endwith %}
+        </div>
+
+        <h2 id="form-title">Welcome Back</h2>
+        <p id="form-subtitle">Sign in to continue your journey</p>
+        
+        <!-- FORM -->
+        <form id="auth-form" method="POST">
+          <input type="email" name="email" placeholder="Email" required>
+          <input type="password" name="password" placeholder="Password" required>
+          <input type="hidden" name="action" value="login">
+          <button type="submit" id="submit-btn">Sign In 👋</button>
+        </form>
+
+        <div class="divider">or continue with</div>
+
+        <div class="social-login">
+          <button class="google">Google</button>
+          <button class="spotify">Spotify</button>
+        </div>
+
+        <p class="signup" id="toggle-form">
+          New to MoodTune? <a href="#">Create an account</a>
+        </p>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- JS TOGGLE LOGIN/SIGNUP -->
+  <script>
+    const toggleForm = document.getElementById('toggle-form');
+    const formTitle = document.getElementById('form-title');
+    const formSubtitle = document.getElementById('form-subtitle');
+    const authForm = document.getElementById('auth-form');
+
+    let isLogin = true;
+
+    toggleForm.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (isLogin) {
+        formTitle.textContent = "Create Account";
+        formSubtitle.textContent = "Sign up to start your journey";
+        authForm.innerHTML = `
+          <input type="text" name="name" placeholder="Full Name" required>
+          <input type="email" name="email" placeholder="Email" required>
+          <input type="password" name="password" placeholder="Password" required>
+          <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+          <input type="hidden" name="action" value="signup">
+          <button type="submit">Sign Up 🚀</button>
+        `;
+        toggleForm.innerHTML =
+          'Already have an account? <a href="#">Sign in</a>';
+        isLogin = false;
+
+      } else {
+        formTitle.textContent = "Welcome Back";
+        formSubtitle.textContent = "Sign in to continue your journey";
+        authForm.innerHTML = `
+          <input type="email" name="email" placeholder="Email" required>
+          <input type="password" name="password" placeholder="Password" required>
+          <input type="hidden" name="action" value="login">
+          <button type="submit">Sign In 👋</button>
+        `;
+        toggleForm.innerHTML =
+          'New to MoodTune? <a href="#">Create an account</a>';
+        isLogin = true;
+      }
+    });
+  </script>
+
+</body>
+</html>

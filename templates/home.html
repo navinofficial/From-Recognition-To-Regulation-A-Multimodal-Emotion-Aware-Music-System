@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MoodTune</title>
+  <link rel="stylesheet" href="static/home.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">🎵 MoodTune</div>
+    <ul class="nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Analyze</a></li>
+      <li><a href="#">Recommendations</a></li>
+      <li><a href="#">Profile</a></li>
+    </ul>
+    <div class="profile-circle"></div>
+  </nav>
+
+  <!-- Main Section -->
+  <section class="hero">
+    <h1>Hey Bharath <span class="wave">👋</span>,<br>
+      <span class="highlight">how are you feeling today?</span>
+    </h1>
+    <p>Let's discover the perfect music to match or improve your mood using AI-powered emotion detection.</p>
+
+    <div class="cards">
+      <!-- Play Playlist Card -->
+        <div class="card purple">
+        <div class="card-header">
+            <span class="emoji">🎶</span>
+            <div class="text-group">
+            <h2>Play Playlist</h2>
+            <p class="subtitle">Upload or link your music</p>
+            </div>
+        </div>
+        <p class="desc">Connect your Spotify or YouTube playlist and let our AI analyze the perfect tracks for your current mood.</p>
+        <a href="#" class="btn">Get Started →</a>
+        </div>
+
+        <div class="card blue">
+        <div class="card-header">
+            <span class="emoji">🧠</span>
+            <div class="text-group">
+            <h2>Emotion Recognition</h2>
+            <p class="subtitle">Analyze your current mood</p>
+            </div>
+        </div>
+        <p class="desc">Use our advanced AI to detect your emotions through facial expressions, voice, or text input.</p>
+        <a href="{{ url_for('input_page') }}" class="btn recommended">Recommended →</a>
+        </div>
+    </div>
+  </section>
+</body>
+</html>

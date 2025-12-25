@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emotion Recognition</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='input.css') }}">
+</head>
+<body>
+
+<div class="container">
+  <h2 class="title">Let's understand your <span>current emotion</span></h2>
+  <p class="subtitle">Choose your preferred method below. Our AI will analyze your input to provide personalized music recommendations.</p>
+
+  <div class="card-container">
+    <div class="card" id="face-card">
+      <div class="icon">📸</div>
+      <h3>Facial Expression</h3>
+      <p>Camera is ready</p>
+    </div>
+    <div class="card" id="voice-card">
+      <div class="icon">🎤</div>
+      <h3>Voice Analysis</h3>
+      <p>Analyze tone and emotion</p>
+    </div>
+  </div>
+
+  <button class="analyze-btn" id="analyzeBtn">✨ Analyze Emotion ✨</button>
+</div>
+
+<!-- CAMERA POPUP -->
+<div id="cameraPopup" class="popup" style="display:none;">
+  <div class="popup-box">
+    <h2>📸 Capture Your Photo</h2>
+    <video id="camera" autoplay></video>
+    <div class="popup-btn-row">
+      <button id="captureBtn" class="capture-button">Capture</button>
+      <button id="closePopup" class="close-button">Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+let cameraPopup = document.getElementById("cameraPopup");
+let faceCard = document.getElementById("face-card");
+let closePopup = document.getElementById("closePopup");
+let capturedImage = null;
+
+// Open camera popup
+faceCard.onclick = () => {
+  cameraPopup.style.display = "flex";
+  navigator.mediaDevices.getUserMedia({ video: true })
+    .then(stream => { document.getElementById("camera").srcObject = stream; });
+};
+
+// Close popup
+closePopup.onclick = () => { cameraPopup.style.display = "none"; };
+
+// Capture image
+document.getElementById("captureBtn").onclick = () => {
+  let video = document.getElementById("camera");
+  let canvas = document.createElement("canvas");
+  canvas.width = video.videoWidth;
+  canvas.height = video.videoHeight;
+  canvas.getContext("2d").drawImage(video, 0, 0);
+  capturedImage = canvas.toDataURL("image/jpeg");
+  cameraPopup.style.display = "none";
+};
+
+// Analyze → send to server and redirect to output
+document.getElementById("analyzeBtn").onclick = async () => {
+  if (!capturedImage) {
+    alert("Please capture a photo first!");
+    return;
+  }
+
+  try {
+    let response = await fetch("/predict_emotion", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ image: capturedImage })
+    });
+
+    let result = await response.json();
+
+    if (result.error) {
+      alert("Prediction failed: " + result.error);
+      return;
+    }
+
+    // Redirect with all parameters
+    let params = new URLSearchParams({
+      image_url: result.image_url,
+      emotion: result.emotion,
+      confidence: result.confidence
+    });
+
+    window.location.href = `/output?${params.toString()}`;
+
+  } catch (err) {
+    alert("Something went wrong: " + err);
+  }
+};
+</script>
+
+</body>
+</html>

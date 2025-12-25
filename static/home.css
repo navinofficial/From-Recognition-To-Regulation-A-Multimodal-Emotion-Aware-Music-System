@@ -1,0 +1,175 @@
+/* ===== Reset ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* ===== Body ===== */
+body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1f005c, #5b00a6, #240046);
+  color: #fff;
+}
+
+/* ===== Navbar ===== */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 50px;
+  background: rgba(0, 0, 0, 0.3);
+  font-size: 16px; /* unified font size */
+}
+
+.logo {
+  font-weight: 600; /* slightly bolder for consistency */
+  font-size: 20px;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 500;
+  font-size: 14px; /* unified font size for links */
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: #0ff;
+}
+
+.profile-circle {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #f72585, #7209b7);
+}
+
+/* ===== Hero Section ===== */
+.hero {
+  text-align: left;
+  padding: 80px 60px;
+}
+
+.hero h1 {
+  font-size: 36px; /* main heading size */
+  line-height: 1.4;
+  font-weight: 600; /* unified weight */
+}
+
+.wave {
+  font-size: 30px;
+}
+
+.highlight {
+  color: #3df5e4;
+  font-weight: 700; /* consistent bold */
+}
+
+.hero p {
+  margin-top: 15px;
+  font-size: 16px;
+  opacity: 0.9;
+  max-width: 600px;
+}
+
+/* ===== Cards ===== */
+.cards {
+  display: flex;
+  gap: 30px;
+  margin-top: 50px;
+}
+
+.card {
+  flex: 1;
+  padding: 25px;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.05);
+  transition: transform 0.3s;
+  font-size: 14px; /* unified base font size */
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card .icon {
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
+.card h2 {
+  font-size: 20px;
+  font-weight: 600; /* unified heading weight */
+}
+
+.card p,
+.card .desc {
+  font-size: 14px;
+  opacity: 0.8;
+  margin-top: 5px;
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 15px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.btn:hover {
+  text-decoration: underline;
+}
+
+/* ===== Card Colors ===== */
+.purple {
+  background: linear-gradient(135deg, #7209b7, #560bad);
+}
+
+.blue {
+  background: linear-gradient(135deg, #3a0ca3, #4361ee);
+}
+
+.recommended {
+  padding: 10px 12px;
+  color: #fff;
+  font-weight: 600;
+}
+
+/* ===== Card Header ===== */
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.emoji {
+  font-size: 45px;   
+  line-height: 1;    
+  display: flex;
+  align-items: center;
+}
+
+.text-group h2 {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.text-group .subtitle {
+  font-size: 14px;
+  font-weight: 400;
+  opacity: 0.8;
+  margin: 3px 0 0 0;
+}

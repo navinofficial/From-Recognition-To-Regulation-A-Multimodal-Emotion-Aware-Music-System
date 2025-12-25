@@ -1,0 +1,154 @@
+/* ===== Background Gradient ===== */
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #2b0a63, #6a0dad, #d63384);
+  font-family: 'Segoe UI', sans-serif;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+/* ===== Container ===== */
+.container {
+  text-align: center;
+  max-width: 900px;
+  padding: 20px;
+}
+
+/* ===== Title & Subtitle ===== */
+.title {
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.title span {
+  color: #ffb6ff;
+}
+
+.subtitle {
+  font-size: 16px;
+  color: #ddd;
+  margin-bottom: 50px;
+}
+
+/* ===== Cards ===== */
+.card-container {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  margin-bottom: 50px;
+  flex-wrap: wrap;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  padding: 40px;
+  width: 220px;
+  transition: 0.3s ease;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  background: rgba(255,255,255,0.2);
+  box-shadow: 0 8px 30px rgba(255,182,255,0.3);
+}
+
+.icon {
+  font-size: 30px;
+  margin-bottom: 15px;
+}
+
+/* ===== Analyze Button ===== */
+.analyze-btn {
+  background: linear-gradient(90deg, #a020f0, #ff66c4);
+  color: white;
+  border: none;
+  padding: 14px 40px;
+  font-size: 16px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255,102,196,0.3);
+}
+
+.analyze-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(255,102,196,0.5);
+}
+
+/* ===== CAMERA POPUP ===== */
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.65);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(4px);
+  z-index: 999;
+}
+
+.popup-box {
+  width: 430px;
+  padding: 25px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.25);
+  text-align: center;
+  animation: pop 0.25s ease;
+}
+
+@keyframes pop {
+  from { transform: scale(0.8); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+#camera {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 15px;
+  margin-bottom: 15px;
+  border: 2px solid rgba(255,255,255,0.3);
+}
+
+.popup-btn-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.capture-button,
+.close-button {
+  width: 48%;
+  padding: 10px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.capture-button {
+  background: #4caf50;
+  color: white;
+}
+
+.close-button {
+  background: #ff5252;
+  color: white;
+}
+
+.capture-button:hover { background: #43a047; }
+.close-button:hover { background: #e74c3c; }

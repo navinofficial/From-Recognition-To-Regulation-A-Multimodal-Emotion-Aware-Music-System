@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emotion Result</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='output.css') }}">
+
+  <style>
+    /* --- Glass Popup Style --- */
+    .popup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      backdrop-filter: blur(4px);
+      z-index: 999;
+    }
+    .popup-box {
+      width: 430px;
+      padding: 25px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.25);
+      text-align: center;
+      color: white;
+      animation: pop 0.3s ease;
+    }
+    @keyframes pop {
+      from { transform: scale(0.8); opacity: 0; }
+      to   { transform: scale(1); opacity: 1; }
+    }
+    .popup-box input {
+      width: 100%;
+      padding: 12px;
+      margin: 15px 0;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.25);
+      background: rgba(255,255,255,0.14);
+      color: white;
+      text-align: center;
+    }
+    .popup-btn-row {
+      display: flex;
+      justify-content: space-between;
+    }
+    .capture-button,
+    .close-button {
+      width: 48%;
+      padding: 10px;
+      border-radius: 12px;
+      cursor: pointer;
+      border: none;
+      color: white;
+      font-size: 16px;
+    }
+    .capture-button { background: #4caf50; }
+    .close-button { background: #ff5252; }
+  </style>
+</head>
+
+<body>
+
+<a href="{{ url_for('input_page') }}" class="back-btn">← Back</a>
+
+<div class="main-container">
+
+  <div class="left-panel">
+    <img src="{{ image_url }}" alt="User Image" class="user-image">
+  </div>
+
+  <div class="right-panel">
+    <h2 class="emotion-title">
+      You seem <span>{{ emotion }}</span>
+    </h2>
+
+    <div class="confidence-circle">
+      <div class="inner-circle">
+        <h3>{{ (confidence * 100) | round(0) }}%</h3>
+        <p>Confidence</p>
+      </div>
+    </div>
+
+    <p class="sub-text">Choose how you want the music to respond:</p>
+
+    <div class="music-row">
+
+      <!-- Match Mood Card -->
+      <a href="#" class="music-card match" onclick="openPopup('match')">
+        <h3>🎵 Music to Match Mood</h3>
+        <p>Align with your current emotional state</p>
+        <span class="arrow">→</span>
+      </a>
+
+      <!-- Regulate Mood Card -->
+      <a href="#" class="music-card regulate" onclick="openPopup('regulate')">
+        <h3>🌿 Music to Regulate Mood</h3>
+        <p>Enhance or balance your emotional state</p>
+        <span class="recommended">Recommended</span>
+        <span class="arrow">→</span>
+      </a>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- Playlist Popup -->
+<div id="playlist-popup" class="popup" style="display:none;">
+  <div class="popup-box">
+    <h2>🎵 Enter Your Playlist</h2>
+    <p>Paste a YouTube or Spotify playlist link.</p>
+
+    <input type="text" id="playlist-link" placeholder="https://youtube.com/playlist/...">
+
+    <div class="popup-btn-row">
+      <button class="capture-button" onclick="submitPlaylist()">Submit</button>
+      <button class="close-button" onclick="closePopup()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  let currentMode = null;
+
+  function openPopup(mode) {
+    currentMode = mode;
+    document.getElementById("playlist-popup").style.display = "flex";
+  }
+
+  function closePopup() {
+    document.getElementById("playlist-popup").style.display = "none";
+  }
+
+  function submitPlaylist() {
+    const playlistUrl = document.getElementById("playlist-link").value.trim();
+    const emotion = "{{ emotion }}";
+
+    if (!playlistUrl) {
+      alert("Please enter a playlist link.");
+      return;
+    }
+
+    // Send to Flask backend
+    fetch("/process_playlist", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        playlist_url: playlistUrl,
+        emotion: emotion,
+        mode: currentMode
+      })
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.error) {
+        alert("Error: " + data.error);
+        return;
+      }
+
+      // Redirect to playlist results page
+      window.location.href = `/playlist_result?session_id=${encodeURIComponent(data.session_id)}&playlist_url=${encodeURIComponent(data.playlist_url || "")}`;
+
+    })
+    .catch(err => console.error(err));
+  }
+</script>
+
+</body>
+</html>

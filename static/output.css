@@ -1,0 +1,208 @@
+/* Background and Global Styles */
+body {
+  margin: 0;
+  background: linear-gradient(135deg, #4a8cff, #7f6bff, #b066ff);
+  font-family: 'Segoe UI', sans-serif;
+  color: #fff;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative; /* Allows absolute positioning of back button */
+}
+
+/* Main Layout */
+.main-container {
+  display: flex;
+  width: 90%;
+  max-width: 1400px;
+  gap: 60px;
+  align-items: center;
+}
+
+/* Left Panel */
+.left-panel {
+  width: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-image {
+  width: 350px;
+  height: 350px;
+  border-radius: 25px;
+  object-fit: cover;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Right Panel */
+.right-panel {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  justify-content: center;
+}
+
+.emotion-title {
+  font-size: 32px;
+  font-weight: 600;
+  margin: 0;
+  text-align: center;
+}
+
+.emotion-title span {
+  color: #ffe2ff;
+}
+
+/* Confidence Circle */
+.confidence-circle {
+  width: 140px;
+  height: 140px;
+  border: 6px solid #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+}
+
+.inner-circle {
+  text-align: center;
+}
+
+.inner-circle h3 {
+  font-size: 28px;
+  margin: 0;
+}
+
+.inner-circle p {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.sub-text {
+  font-size: 16px;
+  opacity: 0.9;
+  margin: 0;
+  text-align: center;
+}
+
+/* Music Buttons */
+.music-row {
+  display: flex;
+  gap: 30px;
+}
+
+.music-card {
+  flex: 1;
+  padding: 35px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  backdrop-filter: blur(20px);
+  text-decoration: none;
+  color: white;
+  position: relative;
+  transition: 0.3s ease;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.music-card:hover {
+  transform: translateY(-5px);
+}
+
+.music-card h3 {
+  margin-top: 0;
+  font-size: 24px;
+}
+
+.music-card p {
+  font-size: 16px;
+  opacity: 0.85;
+}
+
+.arrow {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  font-size: 28px;
+}
+
+.recommended {
+  padding: 6px 12px;
+  background: #00d37a;
+  border-radius: 12px;
+  font-size: 12px;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+/* Back Button */
+.back-btn {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 16px;
+  opacity: 0.9;
+  background: rgba(255, 255, 255, 0.1); /* Subtle background for visibility */
+  padding: 8px 12px;
+  border-radius: 8px;
+  backdrop-filter: blur(10px);
+  transition: 0.3s ease;
+}
+
+.back-btn:hover {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .main-container {
+    flex-direction: column;
+    width: 95%;
+    gap: 30px;
+  }
+  .left-panel, .right-panel {
+    width: 100%;
+  }
+  .user-image {
+    width: 250px;
+    height: 250px;
+  }
+  .confidence-circle {
+    width: 120px;
+    height: 120px;
+  }
+  .inner-circle h3 {
+    font-size: 24px;
+  }
+  .emotion-title {
+    font-size: 26px;
+  }
+  .music-row {
+    flex-direction: column;
+  }
+  .music-card {
+    padding: 25px;
+  }
+  .music-card h3 {
+    font-size: 20px;
+  }
+  .music-card p {
+    font-size: 14px;
+  }
+  .arrow {
+    font-size: 24px;
+  }
+  .back-btn {
+    top: 10px;
+    left: 10px;
+    font-size: 14px;
+    padding: 6px 10px;
+  }
+}
